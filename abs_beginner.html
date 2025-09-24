@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Toned Abs Workout Plan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            color: #2c3e50;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .header h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.8;
+            font-weight: 500;
+        }
+
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #6c757d;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .tab.active {
+            background: white;
+            color: #ff6b6b;
+            border-bottom: 3px solid #ff6b6b;
+        }
+
+        .tab:hover {
+            background: rgba(255, 107, 107, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .intensity-selector {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .intensity-btn {
+            padding: 15px 30px;
+            border: 3px solid #ff6b6b;
+            background: white;
+            color: #ff6b6b;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .intensity-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: #ff6b6b;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        .intensity-btn.active::before {
+            width: 100%;
+            height: 100%;
+        }
+
+        .intensity-btn.active {
+            background: #ff6b6b;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .workout-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .workout-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid #f1f3f4;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .workout-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57);
+        }
+
+        .workout-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .workout-title {
+            font-size: 1.4em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+        }
+
+        .exercise-list {
+            list-style: none;
+        }
+
+        .exercise-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f8f9fa;
+            transition: all 0.2s ease;
+        }
+
+        .exercise-item:hover {
+            background: rgba(255, 107, 107, 0.05);
+            margin: 0 -15px;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .exercise-item:last-child {
+            border-bottom: none;
+        }
+
+        .exercise-name {
+            font-weight: 600;
+            color: #495057;
+            font-size: 1.05em;
+        }
+
+        .exercise-reps {
+            color: #6c757d;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        .check-box {
+            width: 24px;
+            height: 24px;
+            border: 3px solid #dee2e6;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: 15px;
+            position: relative;
+        }
+
+        .check-box:hover {
+            border-color: #ff6b6b;
+            transform: scale(1.1);
+        }
+
+        .check-box.checked {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            border-color: #28a745;
+            animation: checkPulse 0.3s ease;
+        }
+
+        @keyframes checkPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .check-box.checked::after {
+            content: '✓';
+            color: white;
+            position: absolute;
+            top: -2px;
+            left: 4px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .progress-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .progress-ring {
+            width: 150px;
+            height: 150px;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .progress-ring svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .progress-ring-circle {
+            fill: none;
+            stroke: rgba(255,255,255,0.2);
+            stroke-width: 8;
+        }
+
+        .progress-ring-fill {
+            fill: none;
+            stroke: #fff;
+            stroke-width: 8;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 0.5s ease;
+        }
+
+        .progress-percentage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .tips-section {
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+            border-left: 6px solid #fdcb6e;
+            padding: 25px;
+            margin-top: 25px;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tips-section::before {
+            content: '💡';
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2em;
+            opacity: 0.7;
+        }
+
+        .tips-title {
+            font-weight: 700;
+            color: #6d4c41;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .tips-list {
+            color: #6d4c41;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        .muscle-diagram {
+            text-align: center;
+            margin: 30px 0;
+            padding: 25px;
+            background: linear-gradient(135deg, #a8e6cf, #dcedc1);
+            border-radius: 15px;
+        }
+
+        .muscle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .muscle-group {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .muscle-emoji {
+            font-size: 2em;
+            margin-bottom: 8px;
+        }
+
+        .abs-challenge {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: center;
+            border: 3px solid #ff6b6b;
+        }
+
+        .challenge-title {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .challenge-counter {
+            font-size: 3em;
+            color: #ff6b6b;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .challenge-btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .challenge-btn:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .workout-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .intensity-selector {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .intensity-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💪 Ultimate Toned Abs</h1>
+            <p>Sculpt your core, define your abs, transform your midsection!</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('workouts')">🔥 Ab Workouts</button>
+            <button class="tab" onclick="showTab('nutrition')">🥗 Nutrition Tips</button>
+            <button class="tab" onclick="showTab('challenge')">⚡ Daily Challenge</button>
+            <button class="tab" onclick="showTab('progress')">📊 Progress Track</button>
+        </div>
+
+        <div class="content">
+            <!-- Workouts Tab -->
+            <div id="workouts" class="tab-content active">
+                <div class="intensity-selector">
+                    <button class="intensity-btn active" onclick="showIntensity('beginner')">🌱 Beginner</button>
+                    <button class="intensity-btn" onclick="showIntensity('intermediate')">🔥 Intermediate</button>
+                    <button class="intensity-btn" onclick="showIntensity('advanced')">⚡ Advanced</button>
+                </div>
+
+                <div class="muscle-diagram">
+                    <h3>🎯 Muscle Groups We're Targeting</h3>
+                    <div class="muscle-grid">
+                        <div class="muscle-group">
+                            <div class="muscle-emoji">🎯</div>
+                            <div><strong>Upper Abs</strong></div>
+                        </div>
+                        <div class="muscle-group">
+                            <div class="muscle-emoji">⚡</div>
+                            <div><strong>Lower Abs</strong></div>
+                        </div>
+                        <div class="muscle-group">
+                            <div class="muscle-emoji">🌪️</div>
+                            <div><strong>Obliques</strong></div>
+                        </div>
+                        <div class="muscle-group">
+                            <div class="muscle-emoji">💪</div>
+                            <div><strong>Deep Core</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Beginner Level -->
+                <div id="beginner" class="intensity-content">
+                    <div class="workout-grid">
+                        <div class="workout-card">
+                            <div class="workout-title">
+                                🌱 Foundation Builder
+                            </div>
+                            <ul class="exercise-list">
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Modified Crunches</span>
+                                    <span class="exercise-reps">2 sets × 10-15</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Knee Raises</span>
+                                    <span class="exercise-reps">2 sets × 8-12</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Dead Bug</span>
+                                    <span class="exercise-reps">2 sets × 6 each side</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Modified Plank</span>
+                                    <span class="exercise-reps">3 sets × 15-30 sec</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Side Bends</span>
+                                    <span class="exercise-reps">2 sets × 10 each side</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="workout-card">
+                            <div class="workout-title">
+                                🎯 Core Activation
+                            </div>
+                            <ul class="exercise-list">
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Glute Bridge</span>
+                                    <span class="exercise-reps">3 sets × 12-15</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Wall Sit</span>
+                                    <span class="exercise-reps">2 sets × 20-45 sec</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Standing March</span>
+                                    <span class="exercise-reps">2 sets × 10 each leg</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Cat-Cow Stretch</span>
+                                    <span class="exercise-reps">1 set × 10 reps</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Deep Breathing</span>
+                                    <span class="exercise-reps">2 minutes</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Intermediate Level -->
+                <div id="intermediate" class="intensity-content" style="display: none;">
+                    <div class="workout-grid">
+                        <div class="workout-card">
+                            <div class="workout-title">
+                                🔥 Core Sculptor
+                            </div>
+                            <ul class="exercise-list">
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Bicycle Crunches</span>
+                                    <span class="exercise-reps">3 sets × 20 total</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Russian Twists</span>
+                                    <span class="exercise-reps">3 sets × 20</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Leg Raises</span>
+                                    <span class="exercise-reps">3 sets × 10-15</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Full Plank</span>
+                                    <span class="exercise-reps">3 sets × 45-60 sec</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Mountain Climbers</span>
+                                    <span class="exercise-reps">3 sets × 20 total</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="workout-card">
+                            <div class="workout-title">
+                                ⚡ Definition Circuit
+                            </div>
+                            <ul class="exercise-list">
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Flutter Kicks</span>
+                                    <span class="exercise-reps">3 sets × 30 sec</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Side Plank</span>
+                                    <span class="exercise-reps">2 sets × 20-30 sec each</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Reverse Crunches</span>
+                                    <span class="exercise-reps">3 sets × 12-15</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Cross-body Crunches</span>
+                                    <span class="exercise-reps">3 sets × 10 each side</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Hollow Body Hold</span>
+                                    <span class="exercise-reps">2 sets × 20-30 sec</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Level -->
+                <div id="advanced" class="intensity-content" style="display: none;">
+                    <div class="workout-grid">
+                        <div class="workout-card">
+                            <div class="workout-title">
+                                🏆 Elite Core Crusher
+                            </div>
+                            <ul class="exercise-list">
+                                <li class="exercise-item">
+                                    <span class="exercise-name">V-Ups</span>
+                                    <span class="exercise-reps">4 sets × 15-20</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Dragon Flag Negatives</span>
+                                    <span class="exercise-reps">3 sets × 5-8</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Hanging Knee Raises</span>
+                                    <span class="exercise-reps">3 sets × 8-12</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Plank to Pike</span>
+                                    <span class="exercise-reps">3 sets × 10-15</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Turkish Get-up</span>
+                                    <span class="exercise-reps">2 sets × 3 each side</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="workout-card">
+                            <div class="workout-title">
+                                💥 Shredder Circuit
+                            </div>
+                            <ul class="exercise-list">
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Burpees</span>
+                                    <span class="exercise-reps">4 sets × 8-12</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Windshield Wipers</span>
+                                    <span class="exercise-reps">3 sets × 8 each side</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">L-Sit Hold</span>
+                                    <span class="exercise-reps">3 sets × 10-20 sec</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Single-arm Plank</span>
+                                    <span class="exercise-reps">2 sets × 15 sec each</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Bear Crawl</span>
+                                    <span class="exercise-reps">3 sets × 30 sec</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tips-section">
+                    <div class="tips-title">🔥 Ab Training Success Tips</div>
+                    <div class="tips-list">
+                        • Focus on quality over quantity - perfect form is everything<br>
+                        • Breathe out forcefully during the "crunch" part of each movement<br>
+                        • Engage your entire core, not just surface muscles<br>
+                        • Train abs 4-5 times per week for best results<br>
+                        • Remember: abs are made in the kitchen - nutrition is 70% of the game!
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nutrition Tab -->
+            <div id="nutrition" class="tab-content">
+                <div class="workout-grid">
+                    <div class="workout-card">
+                        <div class="workout-title">
+                            🥗 Foods That Reveal Abs
+                        </div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <span class="exercise-name">Lean Proteins</span>
+                                <span class="exercise-reps">Chicken, fish, eggs, tofu</span>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Leafy Greens</span>
+                                <span class="exercise-reps">Spinach, kale, arugula</span>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Healthy Fats</span>
+                                <span class="exercise-reps">Avocado, nuts, olive oil</span>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Complex Carbs</span>
+                                <span class="exercise-reps">Quinoa, sweet potato, oats</span>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Hydration</span>
+                                <span class="exercise-reps">2-3 liters of water daily</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="workout-card">
+                        <div class="workout-title">
+                            🚫 Foods That Hide Abs
+                        </div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <span class="exercise-name">Processed Sugars</span>
+                                <span class="exercise-reps">Candy, sodas, pastries</span>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Refined Carbs</span>
+                                <span class="exercise-reps">White bread, pasta, rice</span>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Trans Fats</span>
+                                <span class="exercise-reps">Fried foods, margarine</span>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Excess Sodium</span>
+                                <span class="exercise-reps">Processed foods, fast food</span>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Alcohol</span>
+                                <span class="exercise-reps">Empty calories, bloating</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="workout-card">
+                        <div class="workout-title">
+                            ⏰ Meal Timing for Abs
+                        </div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <span class="exercise-name">Pre-Workout</span>
+                                <span class="exercise-reps">Light snack 30 min before</span>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Post-Workout</span>
+                                <span class="exercise-reps">Protein + carbs within 30 min</span>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Evening Meals</span>
+                                <span class="exercise-reps">Lighter, protein-focused</span>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Intermittent Fasting</span>
+                                <span class="exercise-reps">16:8 method works great</span>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Cheat Meals</span>
+                                <span class="exercise-reps">Once weekly, planned</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tips-section">
+                    <div class="tips-title">🎯 Nutrition Success Formula</div>
+                    <div class="tips-list">
+                        • Create a moderate caloric deficit (300-500 calories below maintenance)<br>
+                        • Eat protein at every meal (0.8-1g per lb body weight)<br>
+                        • Time your carbs around workouts for energy<br>
+                        • Don't eliminate fats - they're essential for hormone production<br>
+                        • Track your food for 2 weeks to understand your patterns
+                    </div>
+                </div>
+            </div>
+
+            <!-- Challenge Tab -->
+            <div id="challenge" class="tab-content">
+                <div class="abs-challenge">
+                    <div class="challenge-title">🔥 30-Day Plank Challenge</div>
+                    <p>Build core strength progressively!</p>
+                    <div class="challenge-counter" id="challengeDay">Day 1</div>
+                    <div id="challengeTime">20 seconds</div>
+                    <button class="challenge-btn" onclick="completeChallenge()">Complete Today's Challenge!</button>
+                    <div style="margin-top: 20px;">
+                        <div class="progress-ring">
+                            <svg>
+                                <circle class="progress-ring-circle" cx="75" cy="75" r="65"></circle>
+                                <circle class="progress-ring-fill" cx="75" cy="75" r="65" 
+                                        style="stroke-dasharray: 408; stroke-dashoffset: 408;" id="challengeProgress"></circle>
+                            </svg>
+                            <div class="progress-percentage" id="challengePercent">0%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="workout-grid">
+                    <div class="workout-card">
+                        <div class="workout-title">
+                            ⚡ Quick 5-Minute Ab Blasters
+                        </div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <span class="exercise-name">Crunches</span>
+                                <span class="exercise-reps">45 sec work / 15 sec rest</span>
+                                <div class="check-box" onclick="toggleCheck(this)"></div>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Bicycle Crunches</span>
+                                <span class="exercise-reps">45 sec work / 15 sec rest</span>
+                                <div class="check-box" onclick="toggleCheck(this)"></div>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Leg Raises</span>
+                                <span class="exercise-reps">45 sec work / 15 sec rest</span>
+                                <div class="check-box" onclick="toggleCheck(this)"></div>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Russian Twists</span>
+                                <span class="exercise-reps">45 sec work / 15 sec rest</span>
+                                <div class="check-box" onclick="toggleCheck(this)"></div>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Plank Hold</span>
+                                <span class="exercise-reps">45 sec hold</span>
+                                <div class="check-box" onclick="toggleCheck(this)"></div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="workout-card">
+                        <div class="workout-title">
+                            🏃 Cardio Ab Fusion
+                        </div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <span class="exercise-name">Mountain Climbers</span>
+                                <span class="exercise-reps">30 sec</span>
+                                <div class="check-box" onclick="toggleCheck(this)"></div>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">High Knees</span>
+                                <span class="exercise-reps">30 sec</span>
+                                <div class="check-box" onclick="toggleCheck(this)"></div>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Burpees</span>
+                                <span class="exercise-reps">30 sec</span>
+                                <div class="check-box" onclick="toggleCheck(this)"></div>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Jump Squats</span>
+                                <span class="exercise-reps">30 sec</span>
+                                <div class="check-box" onclick="toggleCheck(this)"></div>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Plank Jacks</span>
+                                <span class="exercise-reps">30 sec</span>
+                                <div class="check-box" onclick="toggleCheck(this)"></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tips-section">
+                    <div class="tips-title">⚡ Daily Challenge Tips</div>
+                    <div class="tips-list">
+                        • Do the challenge at the same time each day for consistency<br>
+                        • Focus on maintaining perfect plank form throughout<br>
+                        • If you miss a day, don't go back - just continue from where you left off<br>
+                        • Take progress photos weekly to see your transformation!
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Tab -->
+            <div id="progress" class="tab-content">
+                <div class="progress-section">
+                    <h3>🏆 Your Ab Training Progress</h3>
+                    <div class="progress-ring">
+                        <svg>
+                            <circle class="progress-ring-circle" cx="75" cy="75" r="65"></circle>
+                            <circle class="progress-ring-fill" cx="75" cy="75" r="65" 
+                                    style="stroke-dasharray: 408; stroke-dashoffset: 408;" id="overallProgress"></circle>
+                        </svg>
+                        <div class="progress-percentage" id="overallPercent">0%</div>
+                    </div>
+                    <p id="progressMessage">Start your ab journey today!</p>
+                </div>
+
+                <div class="workout-grid">
+                    <div class="workout-card">
+                        <div class="workout-title">
+                            📊 Weekly Measurements
+                        </div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <span class="exercise-name">Plank Hold Time</span>
+                                <span class="exercise-reps">Week 1: ___ sec</span>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Crunches in 1 minute</span>
+                                <span class="exercise-reps">Week 1: ___ reps</span>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Waist Measurement</span>
+                                <span class="exercise-reps">Week 1: ___ inches</span>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Core Strength (1-10)</span>
+                                <span class="exercise-reps">Week 1: ___/10</span>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Definition Visible</span>
+                                <span class="exercise-reps">Week 1: Yes/No</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="workout-card">
+                        <div class="workout-title">
+                            🎯 Monthly Goals
+                        </div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <span class="exercise-name">Complete all workouts</span>
+                                <div class="check-box" onclick="toggleCheck(this)"></div>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Follow nutrition plan</span>
+                                <div class="check-box" onclick="toggleCheck(this)"></div>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Take progress photos</span>
+                                <div class="check-box" onclick="toggleCheck(this)"></div>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Improve plank time by 50%</span>
+                                <div class="check-box" onclick="toggleCheck(this)"></div>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Feel stronger & more confident</span>
+                                <div class="check-box" onclick="toggleCheck(this)"></div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="workout-card">
+                        <div class="workout-title">
+                            📈 Progress Photos Timeline
+                        </div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <span class="exercise-name">Week 0 (Starting Point)</span>
+                                <span class="exercise-reps">Front & Side View</span>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Week 2</span>
+                                <span class="exercise-reps">Check for initial changes</span>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Week 4</span>
+                                <span class="exercise-reps">Notice muscle definition</span>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Week 8</span>
+                                <span class="exercise-reps">Significant transformation</span>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Week 12</span>
+                                <span class="exercise-reps">Final results showcase</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tips-section">
+                    <div class="tips-title">📸 Progress Tracking Tips</div>
+                    <div class="tips-list">
+                        • Take photos in the same lighting and position each week<br>
+                        • Measure your waist at the narrowest point consistently<br>
+                        • Track how your clothes fit - often better than the scale<br>
+                        • Note improvements in daily activities and posture<br>
+                        • Celebrate non-scale victories like increased strength and energy!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let completedExercises = {};
+        let currentChallenge = parseInt(localStorage.getItem('challengeDay') || '1');
+        
+        // Challenge progression (30-day plank challenge)
+        const challengeTimes = [
+            20, 20, 30, 30, 40, 40, 45, 45, 60, 60, 60, 90, 90, 90, 90, 
+            120, 120, 150, 150, 150, 150, 180, 180, 210, 210, 240, 240, 270, 270, 300
+        ];
+
+        function showTab(tabName) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function showIntensity(level) {
+            const contents = document.querySelectorAll('.intensity-content');
+            contents.forEach(content => content.style.display = 'none');
+            
+            const btns = document.querySelectorAll('.intensity-btn');
+            btns.forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(level).style.display = 'block';
+            event.target.classList.add('active');
+        }
+
+        function toggleCheck(element) {
+            const exerciseName = element.parentElement.querySelector('.exercise-name').textContent;
+            
+            if (element.classList.contains('checked')) {
+                element.classList.remove('checked');
+                delete completedExercises[exerciseName];
+            } else {
+                element.classList.add('checked');
+                completedExercises[exerciseName] = true;
+                
+                // Add celebration effect
+                if (Math.random() < 0.4) {
+                    addCelebration();
+                }
+            }
+            
+            updateProgress();
+        }
+
+        function completeChallenge() {
+            if (currentChallenge <= 30) {
+                currentChallenge++;
+                try {
+                    localStorage.setItem('challengeDay', currentChallenge);
+                } catch(e) {}
+                updateChallenge();
+                addCelebration();
+            }
+        }
+
+        function updateChallenge() {
+            const dayElement = document.getElementById('challengeDay');
+            const timeElement = document.getElementById('challengeTime');
+            const progressElement = document.getElementById('challengeProgress');
+            const percentElement = document.getElementById('challengePercent');
+            
+            if (dayElement && timeElement) {
+                if (currentChallenge <= 30) {
+                    dayElement.textContent = `Day ${currentChallenge}`;
+                    timeElement.textContent = `${challengeTimes[currentChallenge - 1]} seconds`;
+                } else {
+                    dayElement.textContent = "Challenge Complete!";
+                    timeElement.textContent = "You're a plank master! 🏆";
+                }
+            }
+            
+            // Update progress ring
+            if (progressElement && percentElement) {
+                const percentage = Math.min((currentChallenge - 1) / 30 * 100, 100);
+                const circumference = 2 * Math.PI * 65;
+                const strokeDashoffset = circumference - (percentage / 100) * circumference;
+                
+                progressElement.style.strokeDashoffset = strokeDashoffset;
+                percentElement.textContent = `${Math.round(percentage)}%`;
+            }
+        }
+
+        function updateProgress() {
+            const totalExercises = document.querySelectorAll('.check-box').length;
+            const completedCount = Object.keys(completedExercises).length;
+            const percentage = Math.round((completedCount / totalExercises) * 100);
+            
+            const progressElement = document.getElementById('overallProgress');
+            const percentElement = document.getElementById('overallPercent');
+            const messageElement = document.getElementById('progressMessage');
+            
+            if (progressElement && percentElement) {
+                const circumference = 2 * Math.PI * 65;
+                const strokeDashoffset = circumference - (percentage / 100) * circumference;
+                
+                progressElement.style.strokeDashoffset = strokeDashoffset;
+                percentElement.textContent = `${percentage}%`;
+            }
+            
+            if (messageElement) {
+                let message = '';
+                if (percentage === 0) {
+                    message = 'Start your ab journey today!';
+                } else if (percentage < 25) {
+                    message = 'Great start! Your core is waking up! 💪';
+                } else if (percentage < 50) {
+                    message = 'Feeling stronger already! Keep crushing it! 🔥';
+                } else if (percentage < 75) {
+                    message = 'Halfway there! Your abs are taking shape! ⚡';
+                } else if (percentage < 100) {
+                    message = 'Almost there! You can see the definition! 🌟';
+                } else {
+                    message = 'AMAZING! You have the abs of steel! 🏆🔥';
+                }
+                messageElement.textContent = message;
+            }
+        }
+
+        function addCelebration() {
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#fd79a8'];
+            
+            for (let i = 0; i < 15; i++) {
+                const celebration = document.createElement('div');
+                celebration.style.position = 'fixed';
+                celebration.style.width = '12px';
+                celebration.style.height = '12px';
+                celebration.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                celebration.style.top = Math.random() * window.innerHeight + 'px';
+                celebration.style.left = Math.random() * window.innerWidth + 'px';
+                celebration.style.borderRadius = '50%';
+                celebration.style.zIndex = '9999';
+                celebration.style.pointerEvents = 'none';
+                celebration.style.animation = 'celebrationFall 4s linear forwards';
+                
+                document.body.appendChild(celebration);
+                
+                setTimeout(() => {
+                    if (celebration.parentNode) {
+                        celebration.remove();
+                    }
+                }, 4000);
+            }
+        }
+
+        // Add CSS for celebration animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes celebrationFall {
+                0% { 
+                    transform: translateY(-100vh) rotate(0deg) scale(1); 
+                    opacity: 1; 
+                }
+                50% { 
+                    transform: translateY(50vh) rotate(180deg) scale(1.2); 
+                    opacity: 0.8; 
+                }
+                100% { 
+                    transform: translateY(150vh) rotate(360deg) scale(0.5); 
+                    opacity: 0; 
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateChallenge();
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
