@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posture Fix & Toning Workout Plan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #6c757d;
+            transition: all 0.3s ease;
+        }
+
+        .tab.active {
+            background: white;
+            color: #ff6b6b;
+            border-bottom: 3px solid #ff6b6b;
+        }
+
+        .tab:hover {
+            background: rgba(255, 107, 107, 0.1);
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .week-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+
+        .week-btn {
+            padding: 12px 24px;
+            border: 2px solid #ff6b6b;
+            background: white;
+            color: #ff6b6b;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .week-btn.active {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .workout-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .workout-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border: 1px solid #f1f3f4;
+            transition: transform 0.2s ease;
+        }
+
+        .workout-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .workout-title {
+            font-size: 1.3em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .exercise-list {
+            list-style: none;
+        }
+
+        .exercise-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f8f9fa;
+        }
+
+        .exercise-item:last-child {
+            border-bottom: none;
+        }
+
+        .exercise-name {
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .exercise-reps {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .check-box {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #dee2e6;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-left: 10px;
+        }
+
+        .check-box.checked {
+            background: #28a745;
+            border-color: #28a745;
+            position: relative;
+        }
+
+        .check-box.checked::after {
+            content: '✓';
+            color: white;
+            position: absolute;
+            top: -2px;
+            left: 3px;
+            font-size: 14px;
+        }
+
+        .progress-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .progress-bar {
+            background: #e9ecef;
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #28a745, #20c997);
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        .tips-section {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .tips-title {
+            font-weight: 600;
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        .tips-list {
+            color: #856404;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .workout-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .week-selector {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏋️‍♂️ Posture Fix & Toning Plan</h1>
+            <p>Transform your posture, strengthen your core, and get lean!</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('workouts')">Weekly Workouts</button>
+            <button class="tab" onclick="showTab('posture')">Posture Fixes</button>
+            <button class="tab" onclick="showTab('progress')">Progress Track</button>
+        </div>
+
+        <div class="content">
+            <!-- Workouts Tab -->
+            <div id="workouts" class="tab-content active">
+                <div class="week-selector">
+                    <button class="week-btn active" onclick="showWeek(1)">Week 1-2</button>
+                    <button class="week-btn" onclick="showWeek(2)">Week 3-4</button>
+                    <button class="week-btn" onclick="showWeek(3)">Week 5-6</button>
+                </div>
+
+                <div id="week1" class="week-content">
+                    <div class="workout-grid">
+                        <div class="workout-card">
+                            <div class="workout-title">
+                                🎯 Day 1: Core Foundation
+                            </div>
+                            <ul class="exercise-list">
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Dead Bug</span>
+                                    <span class="exercise-reps">2 sets × 8 each side</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Modified Plank</span>
+                                    <span class="exercise-reps">3 sets × 15-30 sec</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Glute Bridges</span>
+                                    <span class="exercise-reps">2 sets × 12</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Wall Push-ups</span>
+                                    <span class="exercise-reps">2 sets × 8-12</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Standing March</span>
+                                    <span class="exercise-reps">2 sets × 10 each</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="workout-card">
+                            <div class="workout-title">
+                                💪 Day 2: Strength Building
+                            </div>
+                            <ul class="exercise-list">
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Bodyweight Squats</span>
+                                    <span class="exercise-reps">2 sets × 10-15</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Knee Push-ups</span>
+                                    <span class="exercise-reps">2 sets × 5-8</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Side-lying Leg Lifts</span>
+                                    <span class="exercise-reps">2 sets × 8 each side</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Seated Row (Band)</span>
+                                    <span class="exercise-reps">2 sets × 10-12</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Calf Raises</span>
+                                    <span class="exercise-reps">2 sets × 15</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="workout-card">
+                            <div class="workout-title">
+                                🧘 Day 3: Recovery & Stretch
+                            </div>
+                            <ul class="exercise-list">
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Cat-Cow Stretch</span>
+                                    <span class="exercise-reps">10 reps</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Hip Flexor Stretch</span>
+                                    <span class="exercise-reps">30 sec each side</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Gentle Yoga Flow</span>
+                                    <span class="exercise-reps">10-15 minutes</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Deep Breathing</span>
+                                    <span class="exercise-reps">5 minutes</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="week2" class="week-content" style="display: none;">
+                    <div class="workout-grid">
+                        <div class="workout-card">
+                            <div class="workout-title">
+                                🎯 Day 1: Enhanced Core
+                            </div>
+                            <ul class="exercise-list">
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Dead Bug</span>
+                                    <span class="exercise-reps">3 sets × 10 each side</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Full Plank</span>
+                                    <span class="exercise-reps">3 sets × 30-45 sec</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Single-leg Glute Bridge</span>
+                                    <span class="exercise-reps">2 sets × 8 each side</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Push-ups</span>
+                                    <span class="exercise-reps">3 sets × 5-10</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Bird Dog</span>
+                                    <span class="exercise-reps">2 sets × 8 each side</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="workout-card">
+                            <div class="workout-title">
+                                💪 Day 2: Strength Progression
+                            </div>
+                            <ul class="exercise-list">
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Jump Squats</span>
+                                    <span class="exercise-reps">3 sets × 8-12</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Pike Push-ups</span>
+                                    <span class="exercise-reps">2 sets × 5-8</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Lateral Lunges</span>
+                                    <span class="exercise-reps">2 sets × 8 each side</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Reverse Fly</span>
+                                    <span class="exercise-reps">3 sets × 12-15</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Mountain Climbers</span>
+                                    <span class="exercise-reps">2 sets × 20 total</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="workout-card">
+                            <div class="workout-title">
+                                🏃 Day 3: Cardio & Core
+                            </div>
+                            <ul class="exercise-list">
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Marching in Place</span>
+                                    <span class="exercise-reps">3 minutes</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Side Plank (Modified)</span>
+                                    <span class="exercise-reps">2 sets × 15 sec each</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Step-ups</span>
+                                    <span class="exercise-reps">2 sets × 10 each leg</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Leg Raises</span>
+                                    <span class="exercise-reps">2 sets × 8-12</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="week3" class="week-content" style="display: none;">
+                    <div class="workout-grid">
+                        <div class="workout-card">
+                            <div class="workout-title">
+                                🔥 Day 1: Advanced Core
+                            </div>
+                            <ul class="exercise-list">
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Plank to Push-up</span>
+                                    <span class="exercise-reps">3 sets × 5-8</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Russian Twists</span>
+                                    <span class="exercise-reps">3 sets × 20</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Single-leg Deadlift</span>
+                                    <span class="exercise-reps">3 sets × 6 each side</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Diamond Push-ups</span>
+                                    <span class="exercise-reps">2 sets × 5-8</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Hollow Body Hold</span>
+                                    <span class="exercise-reps">3 sets × 15-30 sec</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="workout-card">
+                            <div class="workout-title">
+                                🚀 Day 2: Power & Strength
+                            </div>
+                            <ul class="exercise-list">
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Pistol Squat (Assisted)</span>
+                                    <span class="exercise-reps">2 sets × 5 each leg</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Archer Push-ups</span>
+                                    <span class="exercise-reps">2 sets × 4 each side</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Bulgarian Split Squats</span>
+                                    <span class="exercise-reps">3 sets × 8 each leg</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Handstand Prep</span>
+                                    <span class="exercise-reps">3 sets × 30 sec</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Burpees</span>
+                                    <span class="exercise-reps">2 sets × 5-8</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="workout-card">
+                            <div class="workout-title">
+                                ⚡ Day 3: HIIT Circuit
+                            </div>
+                            <ul class="exercise-list">
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Jump Squats</span>
+                                    <span class="exercise-reps">30 sec work / 30 sec rest</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Push-up Variations</span>
+                                    <span class="exercise-reps">30 sec work / 30 sec rest</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">High Knees</span>
+                                    <span class="exercise-reps">30 sec work / 30 sec rest</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Plank Jacks</span>
+                                    <span class="exercise-reps">30 sec work / 30 sec rest</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                                <li class="exercise-item">
+                                    <span class="exercise-name">Repeat Circuit</span>
+                                    <span class="exercise-reps">3-4 rounds total</span>
+                                    <div class="check-box" onclick="toggleCheck(this)"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tips-section">
+                    <div class="tips-title">💡 Workout Schedule Tips</div>
+                    <div class="tips-list">
+                        • Do 3 workouts per week with rest days between<br>
+                        • Listen to your body - progress at your own pace<br>
+                        • Focus on form over speed or reps<br>
+                        • Stay hydrated and get adequate sleep
+                    </div>
+                </div>
+            </div>
+
+            <!-- Posture Tab -->
+            <div id="posture" class="tab-content">
+                <div class="workout-grid">
+                    <div class="workout-card">
+                        <div class="workout-title">
+                            🎯 Daily Posture Fixes (5-10 mins)
+                        </div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <span class="exercise-name">Hip Flexor Stretch</span>
+                                <span class="exercise-reps">Hold 30 sec each side</span>
+                                <div class="check-box" onclick="toggleCheck(this)"></div>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Thoracic Extension</span>
+                                <span class="exercise-reps">10 reps</span>
+                                <div class="check-box" onclick="toggleCheck(this)"></div>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Wall Angels</span>
+                                <span class="exercise-reps">15 reps</span>
+                                <div class="check-box" onclick="toggleCheck(this)"></div>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Glute Activation</span>
+                                <span class="exercise-reps">10 bridges</span>
+                                <div class="check-box" onclick="toggleCheck(this)"></div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="workout-card">
+                        <div class="workout-title">
+                            🏢 Office/Desk Breaks (Every Hour)
+                        </div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <span class="exercise-name">Neck Rolls</span>
+                                <span class="exercise-reps">5 each direction</span>
+                                <div class="check-box" onclick="toggleCheck(this)"></div>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Shoulder Blade Squeezes</span>
+                                <span class="exercise-reps">10 reps</span>
+                                <div class="check-box" onclick="toggleCheck(this)"></div>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Seated Spinal Twist</span>
+                                <span class="exercise-reps">5 each side</span>
+                                <div class="check-box" onclick="toggleCheck(this)"></div>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Hip Marching</span>
+                                <span class="exercise-reps">10 each leg</span>
+                                <div class="check-box" onclick="toggleCheck(this)"></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tips-section">
+                    <div class="tips-title">🏠 Posture Awareness Tips</div>
+                    <div class="tips-list">
+                        • Set hourly reminders to check your posture<br>
+                        • Imagine a string pulling your head toward the ceiling<br>
+                        • Engage your core slightly throughout the day<br>
+                        • Keep your pelvis in neutral position (not tilted forward)<br>
+                        • Sleep with a pillow between your knees if you're a side sleeper
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Tab -->
+            <div id="progress" class="tab-content">
+                <div class="progress-section">
+                    <h3>Weekly Progress</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressBar" style="width: 0%"></div>
+                    </div>
+                    <p id="progressText">0% Complete - Start your first workout!</p>
+                </div>
+
+                <div class="workout-grid" style="margin-top: 30px;">
+                    <div class="workout-card">
+                        <div class="workout-title">
+                            📊 Weekly Measurements
+                        </div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <span class="exercise-name">Plank Hold Time</span>
+                                <span class="exercise-reps">Week 1: ___ sec</span>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Push-ups in a row</span>
+                                <span class="exercise-reps">Week 1: ___ reps</span>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Wall sit duration</span>
+                                <span class="exercise-reps">Week 1: ___ sec</span>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Energy level (1-10)</span>
+                                <span class="exercise-reps">Week 1: ___/10</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="workout-card">
+                        <div class="workout-title">
+                            🎯 Posture Goals
+                        </div>
+                        <ul class="exercise-list">
+                            <li class="exercise-item">
+                                <span class="exercise-name">Daily posture checks</span>
+                                <div class="check-box" onclick="toggleCheck(this)"></div>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Hip flexor stretches</span>
+                                <div class="check-box" onclick="toggleCheck(this)"></div>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Core engagement awareness</span>
+                                <div class="check-box" onclick="toggleCheck(this)"></div>
+                            </li>
+                            <li class="exercise-item">
+                                <span class="exercise-name">Improved posture photos</span>
+                                <div class="check-box" onclick="toggleCheck(this)"></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tips-section">
+                    <div class="tips-title">📈 Progress Tracking Tips</div>
+                    <div class="tips-list">
+                        • Take progress photos from the side view weekly<br>
+                        • Note improvements in daily activities (less back pain, better posture)<br>
+                        • Track your energy levels and sleep quality<br>
+                        • Celebrate small wins - consistency is key!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let completedExercises = JSON.parse(localStorage.getItem('completedExercises') || '{}');
+
+        function showTab(tabName) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        function showWeek(weekNum) {
+            // Hide all week contents
+            const weekContents = document.querySelectorAll('.week-content');
+            weekContents.forEach(content => content.style.display = 'none');
+            
+            // Remove active class from all week buttons
+            const weekBtns = document.querySelectorAll('.week-btn');
+            weekBtns.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected week
+            document.getElementById(`week${weekNum}`).style.display = 'block';
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        function toggleCheck(element) {
+            const exerciseName = element.parentElement.querySelector('.exercise-name').textContent;
+            
+            if (element.classList.contains('checked')) {
+                element.classList.remove('checked');
+                delete completedExercises[exerciseName];
+            } else {
+                element.classList.add('checked');
+                completedExercises[exerciseName] = true;
+            }
+            
+            // Save to localStorage (Note: In Claude.ai environment, this won't persist)
+            try {
+                localStorage.setItem('completedExercises', JSON.stringify(completedExercises));
+            } catch(e) {
+                // localStorage not available in Claude.ai environment
+            }
+            
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const totalExercises = document.querySelectorAll('.check-box').length;
+            const completedCount = Object.keys(completedExercises).length;
+            const percentage = Math.round((completedCount / totalExercises) * 100);
+            
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            
+            if (progressBar && progressText) {
+                progressBar.style.width = percentage + '%';
+                
+                let message = '';
+                if (percentage === 0) {
+                    message = 'Start your first workout!';
+                } else if (percentage < 25) {
+                    message = 'Great start! Keep going!';
+                } else if (percentage < 50) {
+                    message = 'You\'re building momentum!';
+                } else if (percentage < 75) {
+                    message = 'Halfway there! Looking strong!';
+                } else if (percentage < 100) {
+                    message = 'Almost finished! Final push!';
+                } else {
+                    message = 'Amazing work! You\'re crushing it! 🎉';
+                }
+                
+                progressText.textContent = `${percentage}% Complete - ${message}`;
+            }
+        }
+
+        // Initialize progress on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Restore checked states
+            const checkboxes = document.querySelectorAll('.check-box');
+            checkboxes.forEach(checkbox => {
+                const exerciseName = checkbox.parentElement.querySelector('.exercise-name').textContent;
+                if (completedExercises[exerciseName]) {
+                    checkbox.classList.add('checked');
+                }
+            });
+            
+            updateProgress();
+        });
+
+        // Add some motivational animations
+        function addConfetti() {
+            // Simple confetti effect when completing exercises
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7'];
+            
+            for (let i = 0; i < 10; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.top = Math.random() * window.innerHeight + 'px';
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.borderRadius = '50%';
+                confetti.style.zIndex = '9999';
+                confetti.style.pointerEvents = 'none';
+                confetti.style.animation = 'fall 3s linear forwards';
+                
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => {
+                    confetti.remove();
+                }, 3000);
+            }
+        }
+
+        // Add CSS for confetti animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+                100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Trigger confetti when completing exercises
+        const originalToggleCheck = toggleCheck;
+        toggleCheck = function(element) {
+            const wasChecked = element.classList.contains('checked');
+            originalToggleCheck(element);
+            
+            if (!wasChecked && element.classList.contains('checked')) {
+                // Just completed an exercise
+                if (Math.random() < 0.3) { // 30% chance for confetti
+                    addConfetti();
+                }
+            }
+        };
+    </script>
+</body>
+</html>
