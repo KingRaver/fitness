@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Ab Shredder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite alternate',
+                        'gradient-shift': 'gradient-shift 8s ease infinite',
+                        'bounce-subtle': 'bounce-subtle 2s infinite',
+                        'slide-up': 'slide-up 0.6s ease-out',
+                        'scale-pulse': 'scale-pulse 0.3s ease-out',
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'mesh': 'linear-gradient(45deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        @keyframes pulse-glow {
+            from { box-shadow: 0 0 20px rgba(99, 102, 241, 0.4); }
+            to { box-shadow: 0 0 40px rgba(99, 102, 241, 0.8), 0 0 60px rgba(236, 72, 153, 0.4); }
+        }
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        @keyframes bounce-subtle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        @keyframes slide-up {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes scale-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .mesh-bg {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+            background-size: 400% 400%;
+            animation: gradient-shift 8s ease infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen mesh-bg overflow-x-hidden">
+    <!-- Hero Section -->
+    <div class="relative min-h-screen flex items-center justify-center p-4">
+        <!-- Floating Elements -->
+        <div class="absolute top-20 left-10 w-20 h-20 bg-white/20 rounded-full animate-float"></div>
+        <div class="absolute top-40 right-20 w-32 h-32 bg-purple-500/20 rounded-full animate-float" style="animation-delay: -2s"></div>
+        <div class="absolute bottom-20 left-1/4 w-16 h-16 bg-pink-500/20 rounded-full animate-float" style="animation-delay: -4s"></div>
+        
+        <!-- Main Content -->
+        <div class="glass rounded-3xl p-8 md:p-12 max-w-4xl w-full mx-4 animate-slide-up">
+            <div class="text-center mb-12">
+                <h1 class="text-5xl md:text-7xl font-black text-white mb-4 tracking-tight">
+                    ELITE AB
+                    <span class="bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 bg-clip-text text-transparent animate-pulse-glow">
+                        SHREDDER
+                    </span>
+                </h1>
+                <p class="text-xl md:text-2xl text-white/80 font-light">
+                    Intermediate to Advanced Core Domination
+                </p>
+                <div class="flex justify-center mt-8">
+                    <div class="glass rounded-full px-6 py-3">
+                        <span class="text-white font-semibold">🔥 Burn Fat • 💪 Build Muscle • ⚡ Get Shredded</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Stats -->
+            <div class="grid grid-cols-3 gap-4 mb-8">
+                <div class="glass rounded-2xl p-4 text-center transform hover:scale-105 transition-transform">
+                    <div class="text-3xl font-bold text-white">15</div>
+                    <div class="text-white/70 text-sm">Exercises</div>
+                </div>
+                <div class="glass rounded-2xl p-4 text-center transform hover:scale-105 transition-transform">
+                    <div class="text-3xl font-bold text-white">20-30</div>
+                    <div class="text-white/70 text-sm">Minutes</div>
+                </div>
+                <div class="glass rounded-2xl p-4 text-center transform hover:scale-105 transition-transform">
+                    <div class="text-3xl font-bold text-white">HIIT</div>
+                    <div class="text-white/70 text-sm">Style</div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button onclick="startWorkout()" class="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white font-bold py-4 px-8 rounded-full text-xl transform hover:scale-110 transition-all duration-300 animate-pulse-glow shadow-2xl">
+                    START SHREDDING 🔥
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Workout Section -->
+    <div id="workout-section" class="hidden min-h-screen p-4 pb-20">
+        <div class="max-w-6xl mx-auto">
+            <!-- Timer Display -->
+            <div class="glass rounded-3xl p-6 mb-8 text-center">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                    <div class="text-center">
+                        <div id="current-exercise" class="text-2xl md:text-3xl font-bold text-white mb-2">Get Ready!</div>
+                        <div id="exercise-description" class="text-white/80">Prepare for intense core training</div>
+                    </div>
+                    <div class="text-center">
+                        <div id="timer-display" class="text-6xl md:text-8xl font-black text-white mb-2">3</div>
+                        <div class="text-white/70">seconds</div>
+                    </div>
+                    <div class="text-center">
+                        <div id="progress-display" class="text-2xl md:text-3xl font-bold text-white mb-2">0/15</div>
+                        <div class="text-white/80">exercises completed</div>
+                        <!-- Progress Bar -->
+                        <div class="w-full bg-white/20 rounded-full h-3 mt-4">
+                            <div id="progress-bar" class="bg-gradient-to-r from-green-400 to-blue-500 h-3 rounded-full transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Control Panel -->
+            <div class="glass rounded-2xl p-6 mb-8">
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button id="play-pause-btn" onclick="toggleTimer()" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-xl transition-all transform hover:scale-105">
+                        ⏸️ PAUSE
+                    </button>
+                    <button onclick="skipExercise()" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-6 rounded-xl transition-all transform hover:scale-105">
+                        ⏭️ SKIP
+                    </button>
+                    <button onclick="resetWorkout()" class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-xl transition-all transform hover:scale-105">
+                        🔄 RESET
+                    </button>
+                    <button onclick="exitWorkout()" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-xl transition-all transform hover:scale-105">
+                        🚪 EXIT
+                    </button>
+                </div>
+            </div>
+
+            <!-- Exercise Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div id="exercises-container">
+                    <!-- Exercises will be dynamically generated -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Completion Modal -->
+    <div id="completion-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="glass rounded-3xl p-8 max-w-md w-full text-center animate-slide-up">
+            <div class="text-6xl mb-4">🏆</div>
+            <h2 class="text-3xl font-bold text-white mb-4">WORKOUT COMPLETE!</h2>
+            <p class="text-white/80 mb-6">You've conquered the Elite Ab Shredder! Your core is now forged in fire.</p>
+            <div class="space-y-4">
+                <button onclick="restartWorkout()" class="w-full bg-gradient-to-r from-green-500 to-blue-500 text-white font-bold py-3 px-6 rounded-xl transition-all transform hover:scale-105">
+                    🔄 GO AGAIN
+                </button>
+                <button onclick="exitWorkout()" class="w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-xl transition-all transform hover:scale-105">
+                    🏠 MAIN MENU
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Workout Configuration
+        const exercises = [
+            { name: "V-Ups", duration: 45, rest: 15, description: "Explosive core movement targeting upper and lower abs" },
+            { name: "Russian Twists", duration: 45, rest: 15, description: "Oblique destroyer with rotational power" },
+            { name: "Mountain Climbers", duration: 45, rest: 15, description: "High-intensity cardio core crusher" },
+            { name: "Plank to Pike", duration: 45, rest: 15, description: "Dynamic core stability challenge" },
+            { name: "Bicycle Crunches", duration: 45, rest: 15, description: "Classic ab burner with cross-body action" },
+            { name: "Dead Bug", duration: 45, rest: 15, description: "Deep core stability and control" },
+            { name: "Hollow Body Rocks", duration: 45, rest: 15, description: "Full core engagement and endurance" },
+            { name: "Side Plank Pulses", duration: 30, rest: 10, description: "Oblique isolation with intensity" },
+            { name: "Flutter Kicks", duration: 45, rest: 15, description: "Lower ab destroyer with cardio element" },
+            { name: "Burpees", duration: 45, rest: 15, description: "Full body metabolic destroyer" },
+            { name: "Windshield Wipers", duration: 45, rest: 15, description: "Advanced oblique and lower ab crusher" },
+            { name: "Dragon Flag Negatives", duration: 30, rest: 20, description: "Elite-level core strength builder" },
+            { name: "L-Sit Hold", duration: 30, rest: 20, description: "Isometric core and hip flexor challenge" },
+            { name: "Turkish Get-Up", duration: 60, rest: 15, description: "Full body stability and core integration" },
+            { name: "Plank Jacks", duration: 45, rest: 0, description: "Cardio plank finisher - give everything!" }
+        ];
+
+        let currentExercise = 0;
+        let timeRemaining = 3; // Start with 3-second countdown
+        let isResting = false;
+        let isPaused = false;
+        let timer = null;
+        let isCountdown = true;
+
+        function startWorkout() {
+            document.getElementById('workout-section').classList.remove('hidden');
+            document.querySelector('body').scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+            generateExerciseGrid();
+            startCountdown();
+        }
+
+        function generateExerciseGrid() {
+            const container = document.getElementById('exercises-container');
+            container.innerHTML = '';
+            
+            exercises.forEach((exercise, index) => {
+                const exerciseCard = document.createElement('div');
+                exerciseCard.className = `glass rounded-2xl p-6 transition-all duration-300 ${index === 0 ? 'ring-4 ring-yellow-400 animate-pulse-glow' : ''}`;
+                exerciseCard.id = `exercise-${index}`;
+                
+                exerciseCard.innerHTML = `
+                    <div class="text-center">
+                        <div class="text-2xl mb-2">${index < currentExercise ? '✅' : index === currentExercise ? '🔥' : '⏳'}</div>
+                        <h3 class="text-xl font-bold text-white mb-2">${exercise.name}</h3>
+                        <p class="text-white/70 text-sm mb-4">${exercise.description}</p>
+                        <div class="text-white/60">
+                            <div>${exercise.duration}s work / ${exercise.rest}s rest</div>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(exerciseCard);
+            });
+        }
+
+        function startCountdown() {
+            timeRemaining = 3;
+            isCountdown = true;
+            updateDisplay();
+            
+            timer = setInterval(() => {
+                timeRemaining--;
+                updateDisplay();
+                
+                if (timeRemaining <= 0) {
+                    if (isCountdown) {
+                        startExercise();
+                    } else if (isResting) {
+                        nextExercise();
+                    } else {
+                        startRest();
+                    }
+                }
+            }, 1000);
+        }
+
+        function startExercise() {
+            isCountdown = false;
+            isResting = false;
+            timeRemaining = exercises[currentExercise].duration;
+            updateDisplay();
+            highlightCurrentExercise();
+        }
+
+        function startRest() {
+            if (currentExercise >= exercises.length - 1) {
+                completeWorkout();
+                return;
+            }
+            
+            isResting = true;
+            timeRemaining = exercises[currentExercise].rest;
+            updateDisplay();
+        }
+
+        function nextExercise() {
+            markExerciseComplete(currentExercise);
+            currentExercise++;
+            
+            if (currentExercise >= exercises.length) {
+                completeWorkout();
+                return;
+            }
+            
+            isResting = false;
+            timeRemaining = exercises[currentExercise].duration;
+            updateDisplay();
+            highlightCurrentExercise();
+        }
+
+        function updateDisplay() {
+            const timerDisplay = document.getElementById('timer-display');
+            const currentExerciseDisplay = document.getElementById('current-exercise');
+            const descriptionDisplay = document.getElementById('exercise-description');
+            const progressDisplay = document.getElementById('progress-display');
+            const progressBar = document.getElementById('progress-bar');
+
+            timerDisplay.textContent = timeRemaining;
+            timerDisplay.className = `text-6xl md:text-8xl font-black mb-2 transition-all duration-300 ${
+                timeRemaining <= 3 ? 'text-red-400 animate-bounce' : 
+                isResting ? 'text-green-400' : 'text-white'
+            }`;
+
+            if (isCountdown) {
+                currentExerciseDisplay.textContent = "GET READY!";
+                descriptionDisplay.textContent = "Prepare for intense core training";
+            } else if (isResting) {
+                currentExerciseDisplay.textContent = "REST TIME";
+                descriptionDisplay.textContent = "Recover and prepare for next exercise";
+            } else {
+                currentExerciseDisplay.textContent = exercises[currentExercise].name;
+                descriptionDisplay.textContent = exercises[currentExercise].description;
+            }
+
+            progressDisplay.textContent = `${currentExercise}/${exercises.length}`;
+            const progressPercent = (currentExercise / exercises.length) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+        }
+
+        function highlightCurrentExercise() {
+            // Remove highlight from all exercises
+            document.querySelectorAll('[id^="exercise-"]').forEach(card => {
+                card.className = card.className.replace(' ring-4 ring-yellow-400 animate-pulse-glow', '');
+            });
+            
+            // Highlight current exercise
+            const currentCard = document.getElementById(`exercise-${currentExercise}`);
+            if (currentCard) {
+                currentCard.className += ' ring-4 ring-yellow-400 animate-pulse-glow';
+                currentCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+
+        function markExerciseComplete(index) {
+            const card = document.getElementById(`exercise-${index}`);
+            if (card) {
+                const emoji = card.querySelector('div div');
+                emoji.textContent = '✅';
+                card.className = card.className.replace(' ring-4 ring-yellow-400 animate-pulse-glow', '');
+                card.className += ' ring-2 ring-green-400';
+            }
+        }
+
+        function toggleTimer() {
+            const btn = document.getElementById('play-pause-btn');
+            if (isPaused) {
+                isPaused = false;
+                btn.innerHTML = '⏸️ PAUSE';
+                btn.className = btn.className.replace('bg-green-500 hover:bg-green-600', 'bg-red-500 hover:bg-red-600');
+                timer = setInterval(() => {
+                    timeRemaining--;
+                    updateDisplay();
+                    
+                    if (timeRemaining <= 0) {
+                        if (isCountdown) {
+                            startExercise();
+                        } else if (isResting) {
+                            nextExercise();
+                        } else {
+                            startRest();
+                        }
+                    }
+                }, 1000);
+            } else {
+                isPaused = true;
+                clearInterval(timer);
+                btn.innerHTML = '▶️ PLAY';
+                btn.className = btn.className.replace('bg-red-500 hover:bg-red-600', 'bg-green-500 hover:bg-green-600');
+            }
+        }
+
+        function skipExercise() {
+            if (isCountdown) return;
+            
+            clearInterval(timer);
+            if (!isResting) {
+                markExerciseComplete(currentExercise);
+                currentExercise++;
+            }
+            
+            if (currentExercise >= exercises.length) {
+                completeWorkout();
+            } else {
+                isResting = false;
+                timeRemaining = exercises[currentExercise].duration;
+                updateDisplay();
+                highlightCurrentExercise();
+                
+                if (!isPaused) {
+                    timer = setInterval(() => {
+                        timeRemaining--;
+                        updateDisplay();
+                        
+                        if (timeRemaining <= 0) {
+                            if (isResting) {
+                                nextExercise();
+                            } else {
+                                startRest();
+                            }
+                        }
+                    }, 1000);
+                }
+            }
+        }
+
+        function resetWorkout() {
+            clearInterval(timer);
+            currentExercise = 0;
+            timeRemaining = 3;
+            isResting = false;
+            isPaused = false;
+            isCountdown = true;
+            
+            document.getElementById('play-pause-btn').innerHTML = '⏸️ PAUSE';
+            document.getElementById('play-pause-btn').className = 'bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-xl transition-all transform hover:scale-105';
+            
+            generateExerciseGrid();
+            startCountdown();
+        }
+
+        function completeWorkout() {
+            clearInterval(timer);
+            document.getElementById('completion-modal').classList.remove('hidden');
+            addCelebration();
+        }
+
+        function addCelebration() {
+            const colors = ['#ef4444', '#f97316', '#eab308', '#22c55e', '#3b82f6', '#8b5cf6', '#ec4899'];
+            
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const celebration = document.createElement('div');
+                    celebration.className = 'fixed w-4 h-4 rounded-full pointer-events-none z-40';
+                    celebration.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    celebration.style.top = Math.random() * window.innerHeight + 'px';
+                    celebration.style.left = Math.random() * window.innerWidth + 'px';
+                    celebration.style.animation = 'bounce-subtle 2s infinite';
+                    
+                    document.body.appendChild(celebration);
+                    
+                    setTimeout(() => {
+                        if (celebration.parentNode) {
+                            celebration.remove();
+                        }
+                    }, 3000);
+                }, i * 100);
+            }
+        }
+
+        function restartWorkout() {
+            document.getElementById('completion-modal').classList.add('hidden');
+            resetWorkout();
+        }
+
+        function exitWorkout() {
+            clearInterval(timer);
+            document.getElementById('completion-modal').classList.add('hidden');
+            document.getElementById('workout-section').classList.add('hidden');
+            document.querySelector('body').scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Prevent scrolling during workout
+            let preventScroll = false;
+            
+            window.addEventListener('scroll', function(e) {
+                if (preventScroll) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
